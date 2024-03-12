@@ -57,7 +57,7 @@ namespace Pichonweb2.Controllers
             return Json(resp, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Insert(int idCliente, int idDirección, int idMunicipio, int idEstado,string FechaContrato, string FechaEvento, int Anticipo, int Precio, int Horas, string Estatus)
+        public ActionResult Insert(string idCliente, string idDirección, string idMunicipio, string idEstado,string FechaContrato, string FechaEvento, int Anticipo, int Precio, int Horas, string Estatus)
         {
             var resp = ContratosRepository.Insert(idCliente, idDirección, idMunicipio, idEstado, FechaContrato, FechaEvento, Anticipo, Precio, Horas, Estatus);
             return Json("OK", JsonRequestBehavior.AllowGet);
