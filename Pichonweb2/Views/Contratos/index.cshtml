@@ -43,19 +43,28 @@
             </div>
 
             <div class="modal-body text-dark">
-                <input id="idCli" class="form-control" type="text" placeholder="idCliente" aria-label="default input example"><br />
+                @*<input id="idCli" class="form-control" type="text" placeholder="idCliente" aria-label="default input example"><br />*@
+                <select id="idCli" class="form-select form-select-sm" aria-label="Small select example">                    
+                </select>
                 <div class="input-group mb-3">
                 </div>
 
-                <input id="idDir" class="form-control" type="text" placeholder="idDirección" aria-label="default input example"><br />
+               @* <input id="idDir" class="form-control" type="text" placeholder="idDirección" aria-label="default input example"><br />*@
+               <select id="idDir" class="form-select form-select-sm" aria-label="Small select example">
+               </select>
                 <div class="input-group mb-3">
                 </div>
 
-                <input id="idMun" class="form-control" type="text" placeholder="idMunicipio" aria-label="default input example"><br />
+                @*<input id="idMun" class="form-control" type="text" placeholder="idMunicipio" aria-label="default input example"><br />*@
+                <select id="idMun" class="form-select form-select-sm" aria-label="Small select example">
+               </select>
+                
                 <div class="input-group mb-3">
                 </div>
 
-                <input id="idEst" class="form-control" type="text" placeholder="idEstado" aria-label="default input example"><br />
+                @*<input id="idEst" class="form-control" type="text" placeholder="idEstado" aria-label="default input example"><br />*@                
+               <select id="idEst" class="form-select form-select-sm" aria-label="Small select example">
+               </select>
                 <div class="input-group mb-3">
                 </div>
 
@@ -106,22 +115,32 @@
                 <div class="m-2">
                     <p class="m-0">Id:</p>
                     <input id="idCoU" class="form-control" type="text" placeholder="Id" aria-label="default input example" readonly>
+
+                    
                 </div>
                 <div class="m-2">
                     <p class="m-0">idCliente:</p>
-                    <input id="idCU" class="form-control" type="text" placeholder="idCliente" aria-label="default input example">
+                   @* <input id="idCU" class="form-control" type="text" placeholder="idCliente" aria-label="default input example">*@
+                <select id="idCU" class="form-select form-select-sm" aria-label="Small select example">
+                </select>
                 </div>
                 <div class="m-2">
                     <p class="m-0">idDirección:</p>
-                    <input id="idDU" class="form-control" type="text" placeholder="idDirección" aria-label="default input example">
+                    @*<input id="idDU" class="form-control" type="text" placeholder="idDirección" aria-label="default input example">*@
+                <select id="idDU" class="form-select form-select-sm" aria-label="Small select example">
+                </select>
                 </div>
                 <div class="m-2">
                     <p class="m-0">idMunicipio:</p>
-                    <input id="idMU" class="form-control" type="text" placeholder="idMunicipio" aria-label="default input example">
+                   @* <input id="idMU" class="form-control" type="text" placeholder="idMunicipio" aria-label="default input example">*@
+                <select id="idMU" class="form-select form-select-sm" aria-label="Small select example">
+                </select>
                 </div>
                 <div class="m-2">
                     <p class="m-0">idEstado:</p>
-                    <input id="idEU" class="form-control" type="text" placeholder="idEstado" aria-label="default input example">
+                    @*<input id="idEU" class="form-control" type="text" placeholder="idEstado" aria-label="default input example">*@
+                    <select id="idEU" class="form-select form-select-sm" aria-label="Small select example">
+                    </select>
                 </div>
                 <div class="m-2">
                     <p class="m-0">FechaContrato:</p>
@@ -171,8 +190,113 @@
 
  $(document).ready(function () {
      createtable();
+     SelectCliente();
+     SelectDireccion();
+     SelectMunicipio();
+     SelectEstado();
  });
- function createtable() {
+
+    function SelectCliente(){
+$.ajax({
+    url: '@Url.Action("Select", "Clientes")',
+    type: "POST",
+    data: {},
+    dataType: "json",
+    success: function (d) {
+        var len = d.length;
+
+        $("#idCli").empty();
+        $("#idCli").append("<option selected>Selecciona el cliente</option>");
+        for (var i = 0; i < len; i++) {
+            var id = d[i].idCliente;
+            var name = d[i].Nombre;
+
+            $("#idCli").append("<option value='" + id + "'>" + name + "</option>");
+
+        }
+    },
+    error: function (d) {
+        alert('Error de validacion. '+ d);
+    }
+});
+    }
+
+    function SelectDireccion(){
+$.ajax({
+    url: '@Url.Action("Select", "Dirección")',
+    type: "POST",
+    data: {},
+    dataType: "json",
+    success: function (d) {
+        var len = d.length;
+
+        $("#idDir").empty();
+        $("#idDir").append("<option selected>Selecciona la dirección</option>");
+        for (var i = 0; i < len; i++) {
+            var id = d[i].idDirección;
+            var name = d[i].Calle;
+
+            $("#idDir").append("<option value='" + id + "'>" + name + "</option>");
+
+        }
+    },
+    error: function (d) {
+        alert('Error de validacion. '+ d);
+    }
+});
+    }
+
+    function SelectMunicipio(){
+$.ajax({
+    url: '@Url.Action("Select", "Municipio")',
+    type: "POST",
+    data: {},
+    dataType: "json",
+    success: function (d) {
+        var len = d.length;
+
+        $("#idMun").empty();
+        $("#idMun").append("<option selected>Selecciona el municipio</option>");
+        for (var i = 0; i < len; i++) {
+            var id = d[i].idMunicipio;
+            var name = d[i].Nombre;
+
+            $("#idMun").append("<option value='" + id + "'>" + name + "</option>");
+
+        }
+    },
+    error: function (d) {
+        alert('Error de validacion. '+ d);
+    }
+});
+    }
+
+    function SelectEstado(){
+$.ajax({
+    url: '@Url.Action("Select", "Estado")',
+    type: "POST",
+    data: {},
+    dataType: "json",
+    success: function (d) {
+        var len = d.length;
+
+        $("#idEst").empty();
+        $("#idEst").append("<option selected>Selecciona el estado</option>");
+        for (var i = 0; i < len; i++) {
+            var id = d[i].idEstado;
+            var name = d[i].Nombre;
+
+            $("#idEst").append("<option value='" + id + "'>" + name + "</option>");
+
+        }
+    },
+    error: function (d) {
+        alert('Error de validacion. '+ d);
+    }
+});
+}
+
+    function createtable() {
  $.ajax({
      url: '@Url.Action("Select", "Contratos")',
      type: "POST",
@@ -206,7 +330,8 @@
  });
 
     };
-       function Delete(id){
+
+    function Delete(id){
     $.ajax({
         url: '@Url.Action("delete", "Contratos")',
         type: "POST",
@@ -223,7 +348,8 @@
         }
     });
     }
- function insertContrato() {
+
+    function insertContrato() {
      var idcliente = $('#idCli').val();
      var iddirección = $('#idDir').val();
      var idmunicipio = $('#idMun').val();
@@ -253,7 +379,117 @@
         }
     });
     }
- function showModal(ID) {
+
+    function UpdateCliente(name1){
+$.ajax({
+    url: '@Url.Action("Select", "Clientes")',
+    type: "POST",
+    data: {},
+    dataType: "json",
+    success: function (d) {
+        var len = d.length;
+
+        $("#idCU").empty();
+        //$("#idCli").append("<option selected>Selecciona el cliente</option>");
+        for (var i = 0; i < len; i++) {
+            var id = d[i].idCliente;
+            var name = d[i].Nombre;
+
+            if (name == name1) {
+                $("#idCU").append("<option selected value='" + id + "'>" + name + "</option>");
+            } else {
+                $("#idCU").append("<option value='" + id + "'>" + name + "</option>");
+            }
+        }
+    },
+    error: function (d) {
+        alert('Error de validacion. '+ d);
+    }
+});
+    }
+
+    function UpdateDireccion(name1){
+$.ajax({
+    url: '@Url.Action("Select", "Dirección")',
+    type: "POST",
+    data: {},
+    dataType: "json",
+    success: function (d) {
+        var len = d.length;
+
+        $("#idDU").empty();
+        for (var i = 0; i < len; i++) {
+            var id = d[i].idDirección;
+            var name = d[i].Calle;
+
+            if (name == name1) {
+                $("#idDU").append("<option selected value='" + id + "'>" + name + "</option>");
+            } else {
+                $("#idDU").append("<option value='" + id + "'>" + name + "</option>");
+            }
+        }
+    },
+    error: function (d) {
+        alert('Error de validacion. '+ d);
+    }
+});
+        }
+
+    function UpdateMunicipio(name1){
+$.ajax({
+    url: '@Url.Action("Select", "Municipio")',
+    type: "POST",
+    data: {},
+    dataType: "json",
+    success: function (d) {
+        var len = d.length;
+
+        $("#idMU").empty();
+        for (var i = 0; i < len; i++) {
+            var id = d[i].idMunicipio;
+            var name = d[i].Nombre;
+
+            if (name == name1) {
+                $("#idMU").append("<option selected value='" + id + "'>" + name + "</option>");
+            } else {
+                $("#idMU").append("<option value='" + id + "'>" + name + "</option>");
+            }
+        }
+    },
+    error: function (d) {
+        alert('Error de validacion. '+ d);
+    }
+});
+        }
+
+    function UpdateEstado(name1){
+$.ajax({
+    url: '@Url.Action("Select", "Estado")',
+    type: "POST",
+    data: {},
+    dataType: "json",
+    success: function (d) {
+        var len = d.length;
+
+        $("#idEU").empty();
+        for (var i = 0; i < len; i++) {
+            var id = d[i].idEstado;
+            var name = d[i].Nombre;
+
+            if (name == name1) {
+                $("#idEU").append("<option selected value='" + id + "'>" + name + "</option>");
+            } else {
+                $("#idEU").append("<option value='" + id + "'>" + name + "</option>");
+            }
+        }
+    },
+    error: function (d) {
+        alert('Error de validacion. '+ d);
+    }
+});
+}
+
+    function showModal(ID) {
      $.ajax({
          url: '@Url.Action("GetById", "Contratos")',
          type: "POST",
@@ -278,6 +514,7 @@
          }
      });
     };
+
     function updateContrato() {
      var ID = $('#idCoU').val();
      var idcliente = $('#idCU').val();
@@ -310,7 +547,8 @@
       }
   });
     }
-        function actualizar() {
+
+    function actualizar() {
       var nombre = $('#NomU').val()
       if (nombre == "") {
           alert("El campo Nombre no puede estar vacío")
@@ -337,12 +575,17 @@
           }
       });
     }
+
     function showModal_(i) {
         $('#idCoU').val(rest[i].idContrato);
-        $('#idCU').val(rest[i].idCliente);
-        $('#idDU').val(rest[i].idDirección);
-        $('#idMU').val(rest[i].idMunicipio);
-        $('#idEU').val(rest[i].idEstado);
+        //$('#idCU').val(rest[i].idCliente);
+        UpdateCliente(rest[i].idCliente);
+        //$('#idDU').val(rest[i].idDirección);
+        UpdateDireccion(rest[i].idDirección);
+        //$('#idMU').val(rest[i].idMunicipio);
+        UpdateMunicipio(rest[i].idMunicipio);
+        //$('#idEU').val(rest[i].idEstado);
+        UpdateEstado(rest[i].idEstado);
         $('#FcoU').val(rest[i].FechaContrato);
         $('#FevU').val(rest[i].FechaEvento);
         $('#AntU').val(rest[i].Anticipo);
@@ -350,8 +593,5 @@
         $('#HorU').val(rest[i].Horas,);
         $('#EstU').val(rest[i].Estatus);
         $("#exampleModal2").modal("show");
-
-
-
     };
 </script>

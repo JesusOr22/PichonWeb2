@@ -40,11 +40,12 @@
                 <input id="Nom" class="form-control" type="text" placeholder="Nombre" aria-label="default input example"><br />
                 <div class="input-group mb-3">
                 </div>
-
-                <div class="modal-body text-dark">
-                    <input id="IdEst" class="form-control" type="text" placeholder="idEstado" aria-label="default input example"><br />
-                    <div class="input-group mb-3">
-                    </div>
+                
+                @*<input id="IdEst" class="form-control" type="text" placeholder="idEstado" aria-label="default input example"><br />*@
+                <select id="IdEst" class="form-select form-select-sm" aria-label="Small select example">
+                </select>
+                <div class="input-group mb-3">
+                </div>
 
 
                     <div class="modal-footer">
@@ -55,7 +56,6 @@
             </div>
         </div>
     </div>
-</div>
 <!-- Modal UPDATE -->
 <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -75,7 +75,9 @@
                 </div>
                 <div class="m-2">
                     <p class="m-0">idEstado:</p>
-                    <input id="EstidU" class="form-control" type="text" placeholder="idEstado" aria-label="default input example">
+                   @* <input id="EstidU" class="form-control" type="text" placeholder="idEstado" aria-label="default input example">*@
+                  <select id="EstidU" class="form-select form-select-sm" aria-label="Small select example">
+                  </select>
                 </div>
 
                 <div class="modal-footer">
@@ -95,8 +97,35 @@
 
    $(document).ready(function () {
        createtable();
+       SelectEstado();
    });
-   function createtable() {
+
+     function SelectEstado(){
+$.ajax({
+    url: '@Url.Action("Select", "Estado")',
+    type: "POST",
+    data: {},
+    dataType: "json",
+    success: function (d) {
+        var len = d.length;
+
+        $("#IdEst").empty();
+        $("#IdEst").append("<option selected>Selecciona el estado</option>");
+        for (var i = 0; i < len; i++) {
+            var id = d[i].idEstado;
+            var name = d[i].Nombre;
+
+            $("#IdEst").append("<option value='" + id + "'>" + name + "</option>");
+
+        }
+    },
+    error: function (d) {
+        alert('Error de validacion. '+ d);
+    }
+});
+     }
+
+     function createtable() {
    $.ajax({
        url: '@Url.Action("Select", "Municipio")',
        type: "POST",
@@ -123,7 +152,8 @@
    });
 
     };
-       function Delete(id){
+
+     function Delete(id){
     $.ajax({
         url: '@Url.Action("delete", "Municipio")',
         type: "POST",
@@ -139,8 +169,9 @@
             alert('Error de validacion. '+ d);
         }
     });
-}
- function insertMunicipio() {
+     }
+
+     function insertMunicipio() {
     var nombre = $('#Nom').val();
     var idestado = $('#IdEst').val();
 
@@ -161,8 +192,36 @@
             alert('Error de validacion. ' + d);
         }
     });
+     }
+
+     function UpdateEstado(name1){
+$.ajax({
+    url: '@Url.Action("Select", "Estado")',
+    type: "POST",
+    data: {},
+    dataType: "json",
+    success: function (d) {
+        var len = d.length;
+
+        $("#EstidU").empty();
+        for (var i = 0; i < len; i++) {
+            var id = d[i].idEstado;
+            var name = d[i].Nombre;
+
+            if (name == name1) {
+                $("#EstidU").append("<option selected value='" + id + "'>" + name + "</option>");
+            } else {
+                $("#EstidU").append("<option value='" + id + "'>" + name + "</option>");
+            }
+        }
+    },
+    error: function (d) {
+        alert('Error de validacion. '+ d);
     }
-function showModal(ID) {
+});
+}
+
+     function showModal(ID) {
     $.ajax({
         url: '@Url.Action("GetById", "Municipio")',
         type: "POST",
@@ -180,7 +239,7 @@ function showModal(ID) {
     });
 };
 
- function updateMunicipio() {
+     function updateMunicipio() {
      var ID = $('#MunidU').val();
        var nombre = $('#NomU').val();
        var idestado = $('#EstidU').val();
@@ -200,8 +259,9 @@ function showModal(ID) {
            alert('Error de validacion. ' + d);
        }
    });
-    }
-        function actualizar() {
+     }
+
+     function actualizar() {
      var nombre = $('#NomU').val()
      if (nombre == "") {
          alert("El campo Nombre no puede estar vacío")
@@ -226,10 +286,11 @@ function showModal(ID) {
      });
  }
 
-    function showModal_(i) {
+     function showModal_(i) {
         $('#MunidU').val(rest[i].idMunicipio);
         $('#NomU').val(rest[i].Nombre);
-        $('#EstidU').val(rest[i].idEstado);
+        //$('#EstidU').val(rest[i].idEstado);
+        UpdateEstado(rest[i].idEstado);
         $("#exampleModal2").modal("show");
 
 

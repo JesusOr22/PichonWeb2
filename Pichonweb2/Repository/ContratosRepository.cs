@@ -11,7 +11,7 @@ namespace Pichonweb2.Repository
 {
     public class ContratosRepository
     {
-        public static string Insert(int idCliente, int idDirección, int idMunicipio, int idEstado, string FechaContrato, string FechaEvento, int Anticipo, int Precio, int Horas, string Estatus)
+        public static string Insert(string idCliente, string idDirección, string idMunicipio, string idEstado, string FechaContrato, string FechaEvento, int Anticipo, int Precio, int Horas, string Estatus)
         {
             try
             {

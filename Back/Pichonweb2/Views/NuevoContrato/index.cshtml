@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<head>
+</head>
+    <h1>Agregar nuevo Contrato</h1> <br />
+          <form class="row g-3">
+              <div class="col-md-6">
+                  <label for="idCli" class="form-label">idCliente</label>
+                  <input id="idCli" class="form-control" type="text" placeholder="idCliente" aria-label="default input example"><br />
+              </div>
+              <div class="col-md-6">
+                  <label for="NomC" class="form-label">Nombre del cliente</label>
+                  <input id="NomC" class="form-control" type="text" placeholder="Nombre del cliente" aria-label="default input example"><br />
+                  
+              </div>
+
+              <div class="col-md-6">
+                  <label for="NC" class="form-label">Número de contacto</label>
+                  <input id="NC" class="form-control" type="text" placeholder="Número de contacto" aria-label="default input example"><br />                  
+              </div>
+
+              <div class="col-md-6">
+                  <label for="FE" class="form-label">Fecha del evento</label>
+                  <input id="FE" class="form-control" type="text" placeholder="Fecha del evento" aria-label="default input example"><br />                  
+              </div>
+
+              <div class="col-md-6">
+                  <label for="D" class="form-label">Disponibilidad</label>
+                  <input id="D" class="form-control" type="text" placeholder="Disponibilidad" aria-label="default input example"><br />                  
+              </div>
+
+              <div class="col-md-6">
+                  <label for="HR" class="form-label">Horas requeridas</label>
+                  <input id="HR" class="form-control" type="text" placeholder="Horas requeridas" aria-label="default input example"><br />                  
+              </div>
+
+              <div class="col-md-6">
+                  <label for="P" class="form-label">Precio</label>
+                  <input id="P" class="form-control" type="text" placeholder="Precio" aria-label="default input example"><br />                  
+              </div>
+
+              <div class="col-md-6">
+                  <label for="GE" class="form-label">Gastos Extra</label>
+                  <input id="GE" class="form-control" type="text" placeholder="Gastos Extra" aria-label="default input example"><br />                  
+              </div>
+
+              <div class="col-md-6">
+                  <label for="A" class="form-label">Anticipo</label>
+                  <input id="A" class="form-control" type="text" placeholder="Anticipo" aria-label="default input example"><br />                  
+              </div>
+
+              <div class="col-md-6">
+                  <label for="R" class="form-label">Restante</label>
+                  <input id="R" class="form-control" type="text" placeholder="Restante" aria-label="default input example"><br />                  
+              </div>
+
+              <div class="col-md-6">
+                  <label for="HE" class="form-label">Hora del evento</label>
+                  <input id="HE" class="form-control" type="text" placeholder="Hora del evento" aria-label="default input example"><br />                 
+              </div>
+
+              <div class="col-md-6">
+                  <label for="FC" class="form-label">Fecha del contrato</label>
+                  <input id="FC" class="form-control" type="text" placeholder="Fecha del contrato" aria-label="default input example"><br />                  
+              </div>
+
+              <div class="col-12">
+    <button type="submit" onclick="GuardarContrato()" class="btn btn-primary">Guardar Contrato</button>
+  </div>
+          </form>    
+              @*<button type="button" onclick="NewContrato()" class="btn btn-primary">Guardar</button>*@
+          

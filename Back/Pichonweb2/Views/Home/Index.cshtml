@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<style>
+    body{
+        background: #c8c2c2
+    }
+    .Presentación{
+        font-size:15px;
+    }
+    .LogoB {        
+        width: 350px;
+        margin-left: 50px;
+        border-radius: 1rem;
+        cursor: pointer;
+    }
+    .Bienvenidos {
+        margin-top: 75px;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 70px;        
+    }
+    .carousel-inner {
+        border-radius: 1rem;
+        cursor: pointer;          
+    }   
+</style>
+
+<body>
+<main>
+    
+    <section class="row" aria-labelledby="aspnetTitle">
+
+        <div class="Bienvenidos">
+
+            <div class="Bienvenidos2">
+
+                  <h1 id="title">El pichón y los aguerridos</h1> 
+                  <p class="lead">Bienvenidos a la página oficial para la administración de la agrupación.</p>   
+        </div>
+                  <img class="LogoB" src="../../img/LogoBienvenidos.jpg" >
+            
+            </div>
+        <hr />
+        <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">                   
+                <div class="carousel-item active" data-bs-interval="5000">                    
+                    <img src="../../img/Pichón0.jpg" class="d-block w-100" alt="...">
+               </div>
+                <div class="carousel-item" data-bs-interval="5000">                    
+                    <img src="../../img/Pichón1.jpg" class ="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item" data-bs-interval="5000">
+                    <img src="../../img/Pichón2.jpg" class="d-block w-100" alt="...">                   
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <div>
+            <h1 class="Presentación">
+                Esta página es creada con la intención de administrar los datos relevantes para la agrupación "El pichón y los aguerridos"
+            </h1>
+        </div>
+        
+    </section>   
+         
+</main>
+</body> 

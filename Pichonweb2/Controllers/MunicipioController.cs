@@ -22,7 +22,7 @@ namespace Pichonweb2.Controllers
                 string estado = M.idEstado;
                 foreach (Estado E in estados)
                 {
-                    string idE = M.idEstado;
+                    string idE = E.idEstado;
                     if (estado == idE)
                     {
                         M.idEstado = E.Nombre;
